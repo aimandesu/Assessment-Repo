@@ -3,6 +3,7 @@ using System.Net;
 using BE_.NET.Enums;
 using BE_.NET.Helpers;
 using BE_.NET.Helpers.Filter;
+using BE_.NET.Helpers.Generator;
 using BE_.NET.IRepository;
 using BE_.NET.Model;
 using BE_.NET.Response;
@@ -22,13 +23,13 @@ public static class EmployeeEndpoints
 
         employeeGroup.MapGet("/", GetEmployees);
         employeeGroup.MapPost("/create", CreateEmployee);
-        employeeGroup.MapPut("/update/{id:int}", UpdateEmployee);
-        employeeGroup.MapDelete("/delete/{id:int}", DeleteEmployee);
+        employeeGroup.MapPut("/update/{id}", UpdateEmployee);
+        employeeGroup.MapDelete("/delete/{id}", DeleteEmployee);
     }
 
     private static async Task<IResult> GetEmployees(
         ApplicationDbContext context,
-        [FromBody] EmployeeQueryObject query) //[AsParameters]
+        [AsParameters] EmployeeQueryObject query) //[AsParameters]
     {
         var parameters = new DynamicParameters();
         parameters.Add("@PageNumber",  query.PageNumber);
@@ -73,6 +74,9 @@ public static class EmployeeEndpoints
         [FromBody] Employee employee)
     {
         employee.EntryDate ??= DateTime.Now;
+        var referenceDate = employee.EntryDate.Value;
+        
+        employee.Id = await EmployeeIdGenerator.GenerateEmployeeCode(repository, referenceDate);
         var createdEmployee = await repository.Create(employee);
 
         return ResultResponse<Employee>.Success(createdEmployee);
@@ -80,7 +84,7 @@ public static class EmployeeEndpoints
     }
     
     private static async Task<IResult> UpdateEmployee(
-        int id,
+        string id,
         IBaseRepository<Employee> repository,
         [FromBody] Employee employeeUpdatePayload)
     {
@@ -103,7 +107,7 @@ public static class EmployeeEndpoints
     }
 
     private static async Task<IResult> DeleteEmployee(
-        int id,
+        string id,
         IBaseRepository<Employee> repository)
     {
         var deletedEmployee = await repository.Delete(id);

@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.ConfigureCorsPolicyServiceExtension(builder.Configuration);
 builder.Services.ConfigureDiService();
 builder.Services.ConfigureRateLimiterServiceExtension();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -18,6 +19,7 @@ if (app.Environment.IsDevelopment())
 
 }
 
+app.UseCors("CorsPolicy");
 app.UseRateLimiter();
 app.ConfigureExceptionHandler();
 app.UseHttpsRedirection();

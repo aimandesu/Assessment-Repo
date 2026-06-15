@@ -9,7 +9,9 @@ public partial class Employee
 {
     [Key]
     [Column("ID")]
-    public int Id { get; set; }
+    [DatabaseGenerated(DatabaseGeneratedOption.None)]
+    [MaxLength(15)]
+    public string Id { get; set; } = null!;
 
     [Required]
     [MaxLength(30)]
