@@ -1,0 +1,40 @@
+# ==========================================
+# BACKEND: ASP.NET Core (BE-.NET)
+# ==========================================
+BE-.NET/bin/
+BE-.NET/obj/
+BE-.NET/Properties/publishProfiles/
+BE-.NET/msvsmon.sqlite
+BE-.NET/*.user
+BE-.NET/*.userosscache
+BE-.NET/*.sln.docstates
+
+# Secrets and local configurations
+BE-.NET/appsettings.Development.json
+BE-.NET/appsettings.Local.json
+
+# User-specific files
+.vs/
+.vscode/
+
+# ==========================================
+# FRONTEND: React / Vite (FE-React)
+# ==========================================
+FE-React/node_modules/
+FE-React/dist/
+FE-React/dist-ssr/
+FE-React/*.local
+
+# Vite local env files
+FE-React/.env.local
+FE-React/.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS specific files
+.DS_Store
+Thumbs.db
