@@ -18,13 +18,13 @@ if (app.Environment.IsDevelopment())
 {
 
 }
-
+app.UseHttpsRedirection();
+app.UseStaticFiles();
 app.UseCors("CorsPolicy");
 app.UseRateLimiter();
 app.ConfigureExceptionHandler();
-app.UseHttpsRedirection();
 //Routes
 app.MapEmployeeEndpoints();
 app.MapOcrEndpoints();
-
+app.MapFallbackToFile("wilmar-assessment/index.html");
 app.Run();
