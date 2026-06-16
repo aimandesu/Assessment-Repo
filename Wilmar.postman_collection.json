@@ -1,0 +1,183 @@
+{
+  "info": {
+    "_postman_id": "861aeb4f-21d2-44af-8dac-2de5c13d82c5",
+    "name": "Wilmar",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "33511040"
+  },
+  "item": [
+    {
+      "name": "Get Employees - Pagination",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{endpoint}}/api/employee?PageNumber=1&PageSize=10&IsDescending=True&SortBy=Salary",
+          "host": [
+            "{{endpoint}}"
+          ],
+          "path": [
+            "api",
+            "employee"
+          ],
+          "query": [
+            {
+              "key": "PageNumber",
+              "value": "1"
+            },
+            {
+              "key": "PageSize",
+              "value": "10"
+            },
+            {
+              "key": "IsDescending",
+              "value": "True"
+            },
+            {
+              "key": "SortBy",
+              "value": "Salary"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Employee",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Saya lelaki\",\n  \"birthdate\": \"1995-08-15\",\n  \"sex\": true,\n  \"address\": \"123 Main Street, Kuala Lumpur\",\n  \"salary\": 3200.2500,\n  \"nik\": \"EMP000001\",\n  \"entryDate\": \"2026-06-15T09:00:00\",\n  \"updateDate\": \"2026-06-15T09:00:00\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{endpoint}}/api/employee/create",
+          "host": [
+            "{{endpoint}}"
+          ],
+          "path": [
+            "api",
+            "employee",
+            "create"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Employee",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"John Merak\",\n  \"birthdate\": \"1995-08-15\",\n  \"sex\": false,\n  \"address\": \"123 Main Street, Kuala Lumpur\",\n  \"salary\": 7000.2500,\n  \"nik\": \"EMP000001\",\n  \"entryDate\": \"2026-06-15T09:00:00\",\n  \"updateDate\": \"2026-06-15T09:00:00\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{endpoint}}/api/employee/update/20260600001",
+          "host": [
+            "{{endpoint}}"
+          ],
+          "path": [
+            "api",
+            "employee",
+            "update",
+            "20260600001"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Employee",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{endpoint}}/api/employee/delete/20260600001",
+          "host": [
+            "{{endpoint}}"
+          ],
+          "path": [
+            "api",
+            "employee",
+            "delete",
+            "20260600001"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "OCR Plate Detection",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "ImageFile",
+              "type": "file",
+              "uuid": "139b0840-37c9-4268-b3f6-43b052fcc77c",
+              "src": "/home/namia/Pictures/Screenshot from 2026-06-15 15-46-51.png"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{endpoint}}/api/ocr/plate",
+          "host": [
+            "{{endpoint}}"
+          ],
+          "path": [
+            "api",
+            "ocr",
+            "plate"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "endpoint",
+      "value": ""
+    }
+  ]
+}
